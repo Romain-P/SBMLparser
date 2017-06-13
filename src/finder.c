@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Tue Jun 13 15:44:28 2017 romain pillot
+** Last update Tue Jun 13 15:52:42 2017 romain pillot
 */
 
 #include "parser.h"
@@ -67,7 +67,7 @@ static bool	display_products
   return (true);
 }
 
-static bool	display_reactions(t_property *data, const char *id)
+static bool	display_reactions(t_property *data, const char *id, t_array *array)
 {
   t_property	*found;
   t_property	**properties;
@@ -78,12 +78,21 @@ static bool	display_reactions(t_property *data, const char *id)
   if (!(found = property_findbytype(properties, LIST_REACTIONS)) ||
       !(properties = (t_property **) found->sub_properties->values))
     return (false);
-  printf("List of reactions consuming species %s (quantities)\n", id);
   i = -1;
   while (properties[++i])
     if (consumed =
 	get_consumed((t_property **) properties[i]->sub_properties->values, id))
-      printf("----->%s (%s)\n", property_getvalue(properties[i], "id"), consumed);
+      array_add(array, properties[i]);
+  if (!array->length)
+    return (false);
+  printf("List of reactions consuming species %s (quantities)\n", id);
+  tab_sort((char **) array->values);
+  i = -1;
+  while (++i < array->length)
+    printf("----->%s (%s)\n",
+	   property_getvalue((t_property *) array->values[i], "id"),
+	   get_consumed((t_property **)
+			((t_property *) array->values[i])->sub_properties->values, id));
   return (true);
 }
 
@@ -125,7 +134,7 @@ void		display(t_property *data, t_options *options)
       !(found = property_findbyid(properties, id)) ||
       !((found->tagtype == COMPARTMENT &&
 	 display_products(data, id, array, false)) ||
-	(found->tagtype == SPECIES && display_reactions(data, id)) ||
+	(found->tagtype == SPECIES && display_reactions(data, id, array)) ||
 	(found->tagtype == REACTION && display_reaction_infos(data, id))))
     if (!id)
       display_tags(data, array, true);
