@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Tue Jun 13 08:39:48 2017 romain pillot
+** Last update Tue Jun 13 08:46:29 2017 romain pillot
 */
 
 #include "parser.h"
@@ -33,15 +33,19 @@ static void	display_tags(t_property *data, t_array *array, bool root)
       if (!(*props)->parameters->length && props++)
 	continue;
       i = -1;
-      printf("%s\n", (*props)->name, (*props)->parameters->length);
+      printf("%s\n", (*props)->name);
       while ((*props)->parameters->values[++i])
 	printf("----->%s\n", ((t_pair *) (*props)->parameters->values[i])->key);
       props++;
     }
 }
 
-void	display(t_property *data, t_options *options)
+void		display(t_property *data, t_options *options)
 {
+  t_array	*array;
+
+  array = array_create();
   if (!options->id)
-    display_tags(data, array_create(), true);
+    display_tags(data, array, true);
+  array_destroy(&array, false);
 }
