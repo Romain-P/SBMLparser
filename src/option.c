@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:32:46 2017 romain pillot
-** Last update Mon Jun 12 16:43:54 2017 romain pillot
+** Last update Tue Jun 13 06:58:25 2017 romain pillot
 */
 
 #include "parser.h"
@@ -52,6 +52,11 @@ t_options	*load_options(int ac, char **args, bool debug)
   options->print_equation = false;
   options->json_format = false;
   if (!parse_options(ac, args, options) && debug)
-    fprintf(stderr, "%s: invalid options format.\n", *args);
+    {
+      FREE(options->id);
+      FREE(options);
+      fprintf(stderr, "%s: invalid options format.\n", *args);
+      return (NULL);
+    }
   return (options);
 }

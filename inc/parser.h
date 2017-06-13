@@ -5,14 +5,14 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Mon Jun 12 16:43:06 2017 romain pillot
+** Last update Tue Jun 13 06:57:19 2017 romain pillot
 */
 
 #ifndef PARSER_H_
 # define PARSER_H_
 
 # define _EXIT_SUCCESS		(0)
-# define _EXIT_FAILURE		(1)
+# define _EXIT_FAILURE		(84)
 
 # define SEP_PARAM_OPEN		('<')
 # define SEP_PARAM_CLOSE	('>')

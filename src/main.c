@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:14:29 2016 romain pillot
-** Last update Mon Jun 12 17:09:43 2017 romain pillot
+** Last update Tue Jun 13 06:59:52 2017 romain pillot
 */
 
 #include "parser.h"
@@ -35,7 +35,7 @@ int		main(int ac, char **args)
 
   if ((fd = file_open(args[1], *args)) == -1 ||
       !(data = load_data(fd)) ||
-      !(options = load_options(ac, args, false)))
+      !(options = load_options(ac, args, true)))
     return (_EXIT_FAILURE);
   display(data, options);
   close(fd);
