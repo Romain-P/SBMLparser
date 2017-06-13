@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:14:29 2016 romain pillot
-** Last update Tue Jun 13 06:59:52 2017 romain pillot
+** Last update Tue Jun 13 12:54:26 2017 romain pillot
 */
 
 #include "parser.h"
@@ -27,6 +27,17 @@ static int	file_open(const char *name, char *prog)
   return (fd);
 }
 
+static int	free_and_exit(int status, int fd, t_property *data, t_options *opt)
+{
+  if (fd > 0)
+    close(fd);
+  if (data)
+    property_destroy(data, true);
+  FREE(opt->id);
+  FREE(opt);
+  return (status);
+}
+
 int		main(int ac, char **args)
 {
   int		fd;
@@ -36,11 +47,7 @@ int		main(int ac, char **args)
   if ((fd = file_open(args[1], *args)) == -1 ||
       !(data = load_data(fd)) ||
       !(options = load_options(ac, args, true)))
-    return (_EXIT_FAILURE);
+    return (free_and_exit(_EXIT_FAILURE, fd, data, options));
   display(data, options);
-  close(fd);
-  property_destroy(data, true);
-  FREE(options->id);
-  FREE(options);
-  return (_EXIT_SUCCESS);
+  return (free_and_exit(_EXIT_SUCCESS, fd, data, options));
 }

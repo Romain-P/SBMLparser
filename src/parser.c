@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 08:17:09 2017 romain pillot
-** Last update Tue Jun 13 07:35:08 2017 romain pillot
+** Last update Tue Jun 13 12:24:21 2017 romain pillot
 */
 
 #include "parser.h"
@@ -70,6 +70,7 @@ static void	apply_strategy(char *str, t_property **addr)
   t_property	*new;
   char		**split;
   int		len;
+  int		prop_end;
 
   prop = *addr;
   if (*str == SEP_PROP_END)
@@ -82,7 +83,9 @@ static void	apply_strategy(char *str, t_property **addr)
   len = str_length(str);
   if (str[len - 2] != SEP_PROP_END)
     *addr = new;
-  str[len - 2] = 0;
+  prop_end = str[len - 2] == ' ' ||
+    str[len - 2] == SEP_PROP_END ? len - 2 : len - 1;
+  str[prop_end] = 0;
   load_parameters((split = str_split(str, ' ')), new);
   array_add(prop->sub_properties, new);
   TAB_FREE(split);

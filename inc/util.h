@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue May 23 14:02:04 2017 romain pillot
-** Last update Mon Jun 12 09:06:28 2017 romain pillot
+** Last update Tue Jun 13 12:35:28 2017 romain pillot
 */
 
 #ifndef UTIL_H_
@@ -20,6 +20,8 @@ void	tab_free(void ***ptr);
 # define FREE(PTR)      (safe_free((void **) &(PTR)))
 
 # define TAB_FREE(PTR)	(tab_free((void ***) &(PTR)))
+
+void	tab_sort(char **tab);
 
 int	nbr_parsestring(const char *str);
 

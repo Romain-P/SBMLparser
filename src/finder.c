@@ -5,10 +5,11 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Tue Jun 13 10:26:58 2017 romain pillot
+** Last update Tue Jun 13 13:13:31 2017 romain pillot
 */
 
 #include "parser.h"
+#include "util.h"
 #include <stdio.h>
 
 static void	display_tags(t_property *data, t_array *array, bool root)
@@ -40,16 +41,35 @@ static void	display_tags(t_property *data, t_array *array, bool root)
     }
 }
 
-static bool	display_chemical_products(t_property *data)
+static bool	display_products
+(t_property *data, const char *id, t_array *array, bool nfound)
 {
   t_property	*found;
+  t_property	**properties;
+  int		i;
 
+  properties = (t_property **) data->sub_properties->values;
+  if (!(found = property_findbytype(properties, LIST_SPECIES)) ||
+      !(properties = (t_property **) found->sub_properties->values))
+    return (false);
+  if (!nfound)
+    printf("List of species in compartment %s\n", id);
+  else
+    printf("List of species\n");
+  while (*properties)
+    if ((nfound && properties++) ||
+	str_equals(property_getvalue((*properties++), "compartment"), id))
+      array_add(array, property_getvalue(properties[-1], "name"));
+  tab_sort((char **) array->values);
+  i = -1;
+  while (array->values && array->values[++i])
+    printf("----->%s\n", array->values[i]);
   return (true);
 }
 
-static bool	display_chemical_reactions(t_property *data)
+static bool	display_reactions(t_property *data)
 {
-
+  
   return (true);
 }
 
@@ -64,14 +84,20 @@ void		display(t_property *data, t_options *options)
   t_array	*array;
   t_property	**properties;
   t_property	*found;
+  char		*id;
 
   array = array_create();
+  id = options->id;
   properties = (t_property **) data->sub_properties->values;
-  if (!options->id ||
-      !(found = property_findbyid(properties, options->id)) ||
-      !((found->tagtype == COMPARTMENT && display_chemical_products(data)) ||
-	(found->tagtype == SPECIES && display_chemical_reactions(data)) ||
+  if (!id ||
+      !(found = property_findbyid(properties, id)) ||
+      !((found->tagtype == COMPARTMENT &&
+	 display_products(data, id, array, false)) ||
+	(found->tagtype == SPECIES && display_reactions(data)) ||
 	(found->tagtype == REACTION && display_reaction_infos(data))))
-    display_tags(data, array, true);
+    if (!id)
+      display_tags(data, array, true);
+    else
+      display_products(data, id, array, true);
   array_destroy(&array, false);
 }
