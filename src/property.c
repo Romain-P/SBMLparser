@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 09:13:21 2017 romain pillot
-** Last update Tue Jun 13 07:35:31 2017 romain pillot
+** Last update Tue Jun 13 08:32:06 2017 romain pillot
 */
 
 #include "parser.h"
@@ -24,6 +24,14 @@ t_property	*property_create(const char *name, t_property *parent)
   property->parent = parent;
   property->sub_properties = array_create();
   return (property);
+}
+
+bool    property_exists(t_property **props, t_property *prop)
+{
+  while (props && *props)
+    if (str_equals((*props++)->name, prop->name))
+      return (true);
+  return (false);
 }
 
 void	property_destroy(t_property *property, bool recursively)

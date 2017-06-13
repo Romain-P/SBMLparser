@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Tue Jun 13 07:34:33 2017 romain pillot
+** Last update Tue Jun 13 08:04:34 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -41,7 +41,7 @@ typedef struct		s_tag
 {
   t_tagtype const	type;
   char const		* const name;
-}		t_tag;
+}			t_tag;
 
 typedef struct	s_pair
 {
@@ -72,6 +72,8 @@ t_options	*load_options(int ac, char **args, bool debug);
 void		display(t_property *data, t_options *options);
 
 t_property	*property_create(const char *name, t_property *parent);
+
+bool		property_exists(t_property **props, t_property *prop);
 
 void		property_destroy(t_property *property, bool recursively);
 
