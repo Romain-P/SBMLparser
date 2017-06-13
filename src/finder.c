@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Tue Jun 13 14:42:00 2017 romain pillot
+** Last update Tue Jun 13 15:44:28 2017 romain pillot
 */
 
 #include "parser.h"
@@ -69,7 +69,22 @@ static bool	display_products
 
 static bool	display_reactions(t_property *data, const char *id)
 {
+  t_property	*found;
+  t_property	**properties;
+  int		i;
+  char		*consumed;
 
+  properties = (t_property **) data->sub_properties->values;
+  if (!(found = property_findbytype(properties, LIST_REACTIONS)) ||
+      !(properties = (t_property **) found->sub_properties->values))
+    return (false);
+  printf("List of reactions consuming species %s (quantities)\n", id);
+  i = -1;
+  while (properties[++i])
+    if (consumed =
+	get_consumed((t_property **) properties[i]->sub_properties->values, id))
+      printf("----->%s (%s)\n", property_getvalue(properties[i], "id"), consumed);
+  return (true);
 }
 
 static bool	display_reaction_infos(t_property *data, const char *id)

@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:14:29 2016 romain pillot
-** Last update Tue Jun 13 12:54:26 2017 romain pillot
+** Last update Tue Jun 13 15:40:07 2017 romain pillot
 */
 
 #include "parser.h"
@@ -44,6 +44,9 @@ int		main(int ac, char **args)
   t_property	*data;
   t_options	*options;
 
+  fd = -1;
+  data = NULL;
+  options = NULL;
   if ((fd = file_open(args[1], *args)) == -1 ||
       !(data = load_data(fd)) ||
       !(options = load_options(ac, args, true)))
