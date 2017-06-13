@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 09:13:21 2017 romain pillot
-** Last update Mon Jun 12 11:52:06 2017 romain pillot
+** Last update Tue Jun 13 07:35:31 2017 romain pillot
 */
 
 #include "parser.h"
@@ -19,6 +19,7 @@ t_property	*property_create(const char *name, t_property *parent)
   if (!(property = malloc(sizeof(t_property))))
     return (NULL);
   property->name = name ? str_dupl(name) : NULL;
+  property->tagtype = UNDEFINED;
   property->parameters = array_create();
   property->parent = parent;
   property->sub_properties = array_create();

@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Tue Jun 13 06:57:19 2017 romain pillot
+** Last update Tue Jun 13 07:34:33 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -23,6 +23,26 @@
 
 # include "array.h"
 
+typedef enum	s_tagtype
+{
+  UNDEFINED,
+  COMPARTMENT,
+  SPECIES,
+  REACTION,
+  SPECIES_REF,
+  LIST_COMPARTMENTS,
+  LIST_SPECIES,
+  LIST_REACTIONS,
+  LIST_REACTANTS,
+  LIST_PRODUCTS
+}		t_tagtype;
+
+typedef struct		s_tag
+{
+  t_tagtype const	type;
+  char const		* const name;
+}		t_tag;
+
 typedef struct	s_pair
 {
   char		*key;
@@ -39,6 +59,7 @@ typedef struct	s_options
 typedef struct		s_property
 {
   char			*name;
+  t_tagtype		tagtype;
   t_array		*parameters;
   struct s_property	*parent;
   t_array		*sub_properties;

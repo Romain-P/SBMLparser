@@ -5,12 +5,41 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 08:17:09 2017 romain pillot
-** Last update Mon Jun 12 12:56:25 2017 romain pillot
+** Last update Tue Jun 13 07:35:08 2017 romain pillot
 */
 
 #include "parser.h"
 #include "util.h"
 #include <stdlib.h>
+
+static t_tag const tags[] =
+  {
+    {COMPARTMENT, "compartment"},
+    {SPECIES, "species"},
+    {REACTION, "reaction"},
+    {SPECIES_REF, "speciesReference"},
+    {LIST_COMPARTMENTS, "listOfCompartments"},
+    {LIST_SPECIES, "listOfSpecies"},
+    {LIST_REACTIONS, "listOfReactions"},
+    {LIST_REACTANTS, "listOfReactants"},
+    {LIST_PRODUCTS, "listOfProducts"},
+    {UNDEFINED, NULL}
+  };
+
+static void	parse_tagtype(t_property *prop)
+{
+  int		i;
+
+  i = -1;
+  while (tags[++i].type != UNDEFINED)
+    {
+      if (str_equals(prop->name, tags[i].name))
+	{
+	  prop->tagtype = tags[i].type;
+	  break;
+	}
+    }
+}
 
 static void	load_parameters(char **split, t_property *prop)
 {
@@ -23,13 +52,16 @@ static void	load_parameters(char **split, t_property *prop)
   while (split && split[++i])
     {
       pairs = str_split(str_dupl(split[i]), SEP_PAIR);
-      pair = malloc(sizeof(t_pair));
-      pair->key = str_dupl(pairs[0]);
-      pair->value = str_dupl(pairs[1] + 1);
-      pair->value[str_length(pair->value) - 1] = 0;
-      array_add(prop->parameters, pair);
+      if ((pair = malloc(sizeof(t_pair))))
+	{
+	  pair->key = str_dupl(pairs[0]);
+	  pair->value = str_dupl(pairs[1] + 1);
+	  pair->value[str_length(pair->value) - 1] = 0;
+	  array_add(prop->parameters, pair);
+	}
       TAB_FREE(pairs);
     }
+  parse_tagtype(prop);
 }
 
 static void	apply_strategy(char *str, t_property **addr)
