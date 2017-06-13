@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue Jun 13 16:21:34 2017 romain pillot
-** Last update Tue Jun 13 18:27:10 2017 romain pillot
+** Last update Tue Jun 13 18:30:10 2017 romain pillot
 */
 
 #include "util.h"
@@ -35,6 +35,7 @@ static void	print_list(t_property **properties, t_tagtype type)
       printf(i ? " + %s" : "%s", array->values[i]);
       FREE(array->values[i]);
     }
+  array_destroy(&array, false);
 }
 
 bool		print_equation(t_property *found, char const *id)

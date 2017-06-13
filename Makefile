@@ -5,7 +5,7 @@
 ## Login   <romain.pillot@epitech.net>
 ## 
 ## Started on  Sun Jun  4 17:02:11 2017 romain pillot
-## Last update Tue Jun 13 18:17:22 2017 romain pillot
+## Last update Tue Jun 13 18:31:32 2017 romain pillot
 ##
 
 CC	=	gcc
@@ -15,7 +15,7 @@ NAME	=	SBMLparser
 RM	=	rm -f
 
 SRCS	=	src/main.c			\
-		src/reaction.c			\
+		src/equation.c			\
 		src/finder.c			\
 		src/finder_util.c		\
 		src/option.c			\
