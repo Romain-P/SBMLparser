@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:14:29 2016 romain pillot
-** Last update Mon Jun 12 14:33:48 2017 romain pillot
+** Last update Mon Jun 12 17:09:43 2017 romain pillot
 */
 
 #include "parser.h"
@@ -27,41 +27,20 @@ static int	file_open(const char *name, char *prog)
   return (fd);
 }
 
-static void	show(t_property *property, int lvl)
-{
-  int		i;
-  int		j;
-
-  i = -1;
-  while (++i < lvl)
-    printf("%c", '-');
-  printf("> %s\n", property->name);
-  j = -1;
-  while (++j < property->parameters->length)
-    {
-      i = -1;
-      while (++i < lvl + 1)
-	printf("%c", '-');
-      printf("> %s=%s\n", ((t_pair *)(property->parameters->values[j]))->key,
-	     ((t_pair *)(property->parameters->values[j]))->value);
-    }
-  if (property->sub_properties->length)
-    property_sort_full((t_property **) property->sub_properties->values);
-  i = -1;
-  while (++i < property->sub_properties->length)
-    show((t_property *)property->sub_properties->values[i], lvl + 2);
-}
-
 int		main(int ac, char **args)
 {
   int		fd;
   t_property	*data;
+  t_options	*options;
 
-  if ((fd = file_open(args[1], *args)) == -1)
+  if ((fd = file_open(args[1], *args)) == -1 ||
+      !(data = load_data(fd)) ||
+      !(options = load_options(ac, args, false)))
     return (_EXIT_FAILURE);
-  data = load_data(fd);
+  display(data, options);
   close(fd);
-  show(data, 2);
   property_destroy(data, true);
+  FREE(options->id);
+  FREE(options);
   return (_EXIT_SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Mon Jun 12 14:18:07 2017 romain pillot
+** Last update Mon Jun 12 16:43:06 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -29,6 +29,13 @@ typedef struct	s_pair
   char		*value;
 }		t_pair;
 
+typedef struct	s_options
+{
+  char		*id;
+  bool		print_equation;
+  bool		json_format;
+}		t_options;
+
 typedef struct		s_property
 {
   char			*name;
@@ -38,6 +45,10 @@ typedef struct		s_property
 }			t_property;
 
 t_property	*load_data(const int fd);
+
+t_options	*load_options(int ac, char **args, bool debug);
+
+void		display(t_property *data, t_options *options);
 
 t_property	*property_create(const char *name, t_property *parent);
 

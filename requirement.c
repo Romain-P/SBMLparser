@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 07:05:40 2017 romain pillot
-** Last update Mon Jun 12 13:16:57 2017 romain pillot
+** Last update Tue Jun 13 06:41:18 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -18,7 +18,21 @@ static bool	char_isalphanumeric(char c)
 	  (c >= 'A' && c <= 'Z'));
 }
 
-static void	str_reduce(char *str)
+static char	*str_dupl(char const *str)
+{
+  char		*new;
+  int		i;
+
+  i = 0;
+  while (str && str[i] && ++i);
+  new = malloc(sizeof(char) * (i + 1));
+  new[i] = 0;
+  while (--i >= 0)
+    new[i] = str[i];
+  return (new);
+}
+
+static char	*str_reduce(char *str)
 {
   int   i;
   int   j;
@@ -37,6 +51,7 @@ static void	str_reduce(char *str)
     }
   if (str)
     str[j] = 0;
+  return (str);
 }
 
 static int	str_countchar(const char *str)
@@ -55,22 +70,22 @@ char	**my_strtowordtab_synthesis(char const *str)
 {
   char  **tab;
   char  *hold;
+  char	*dup;
   int   i;
   int   j;
   int   k;
 
   i = -1;
-  str_reduce(str);
-  hold = str;
-  if (!(tab = malloc(sizeof(char *) * ((str_countchar(str) + 2)))))
+  hold = (dup = str_reduce(str_dupl(str)));
+  if (!(tab = malloc(sizeof(char *) * ((str_countchar(dup) + 2)))))
     return (NULL);
   k = 0;
-  while (str[++i])
-    if (!char_isalphanumeric(str[(j = i)]) || !(str[(j = i + 1)]))
+  while (dup[++i])
+    if (!char_isalphanumeric(dup[(j = i)]) || !(dup[(j = i + 1)]))
       {
 	tab[k++] = hold;
-	hold = str + j + 1;
-	str[j] = 0;
+	hold = dup + j + 1;
+	dup[j] = 0;
       }
   tab[k] = 0;
   return (tab);
