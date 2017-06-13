@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1" >
+<model name="Homo sapiens Glycolysis" id="Pathway146" >
+<listOfCompartments>
+<compartment name="Homo sapiens, Cell, Cytosol" id="Cytosol"/>
+<compartment name="Allah ahkbar" id="Allah"/>
+<compartment name="Donnez moi des credits plz" id="AER"/>
+</listOfCompartments>
+<listOfReactions>
+<reaction reversible="false" name="Hexokinase-3" id="Reaction1232" compartment="Cytosol">
+<listOfReactants>
+<speciesReference stoichiometry="1" species="Compound1851"/>
+<speciesReference stoichiometry="1" species="Compound414"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference stoichiometry="1" species="Compound1083"/>
+<speciesReference stoichiometry="1" species="Compound1034"/>
+</listOfProducts>
+</reaction>
+<reaction reversible="true" name="Bagdadium" id="Reaction911" compartment="Allah">
+<listOfReactants>
+<speciesReference stoichiometry="1" species="Compound42"/>
+<speciesReference stoichiometry="3" species="Compound69"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference stoichiometry="2" species="Compound1337"/>
+<speciesReference stoichiometry="1" species="Compound414"/>
+</listOfProducts>
+</reaction>
+<reaction reversible="false" name="Synthèse" id="Reaction54" compartment="AER">
+<listOfReactants>
+<speciesReference stoichiometry="1" species="Compound1939"/>
+<speciesReference stoichiometry="2" species="Compound2"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference stoichiometry="2" species="Compound1"/>
+<speciesReference stoichiometry="1" species="Compound2805"/>
+</listOfProducts>
+</reaction>
+</listOfReactions>
+</model>
+</sbml>

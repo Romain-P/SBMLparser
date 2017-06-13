@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 13:01:14 2017 romain pillot
-** Last update Tue Jun 13 12:31:49 2017 romain pillot
+** Last update Tue Jun 13 16:09:35 2017 romain pillot
 */
 
 #include <stdbool.h>
@@ -25,11 +25,12 @@ static void	parameter_sort(t_pair **params)
 	   params[i + 1]->key && params[i + 1]->key[j] &&
 	   params[i]->key[j] >= params[i + 1]->key[j])
       {
-	if ((changed = params[i]->key[j] > params[i + 1]->key[j]))
+	if (params[i]->key[j] > params[i + 1]->key[j])
 	  {
 	    tmp = params[i];
 	    params[i] = params[i + 1];
 	    params[i + 1] = tmp;
+	    changed = true;
 	    break;
 	  }
 	j++;
@@ -52,11 +53,12 @@ static void	property_sort(t_property **props)
 	   props[i + 1]->name && props[i + 1]->name[j] &&
 	   props[i]->name[j] >= props[i + 1]->name[j])
       {
-	if ((changed = props[i]->name[j] > props[i + 1]->name[j]))
+	if (props[i]->name[j] > props[i + 1]->name[j])
 	  {
 	    tmp = props[i];
 	    props[i] = props[i + 1];
 	    props[i + 1] = tmp;
+	    changed = true;
 	    break;
 	  }
 	j++;

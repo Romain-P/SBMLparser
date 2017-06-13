@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1" >
+<model name="Homo sapiens Glycolysis" id="Pathway146" >
+<listOfCompartments>
+<compartment name="Homo sapiens, Cell, Cytosol" id="Cytosol"/>
+<compartment name="Allah ahkbar" id="Allah"/>
+<compartment name="Donnez moi des credits plz" id="AER"/>
+</listOfCompartments>
+<listOfSpecies>
+<species compartment="Cytosol" name="Adenosine diphosphate" id="Compound1034"/>
+<species compartment="Cytosol" name="Glucose 6-phosphate" id="Compound1083"/>
+<species compartment="Cytosol" name="Alpha-D-Glucose" id="Compound1851"/>
+<species compartment="Cytosol" name="Adenosine triphosphate" id="Compound414"/>
+<species compartment="Allah" name="Mohamed" id="Compound1337"/>
+<species compartment="Allah" name="Karim" id="Compound42"/>
+<species compartment="Allah" name="Samir" id="Compound69"/>
+<species compartment="AER" name="Guigui" id="Compound1"/>
+<species compartment="AER" name="Jon" id="Compound2"/>
+<species compartment="AER" name="Merlin" id="Compound2805"/>
+</listOfSpecies>
+</model>
+</sbml>

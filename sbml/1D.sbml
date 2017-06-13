@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1" >
+<model name="Homo sapiens Glycolysis" id="Pathway146" >
+<listOfCompartments>
+<compartment name="Homo sapiens, Cell, Cytosol" id="Cytosol"/>
+<compartment name="Allah ahkbar" id="Allah"/>
+<compartment name="Donnez moi des credits plz" id="AER"/>
+</listOfCompartments>
+</model>
+</sbml>
