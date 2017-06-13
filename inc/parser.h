@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Tue Jun 13 15:32:38 2017 romain pillot
+** Last update Tue Jun 13 16:24:49 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -72,6 +72,8 @@ t_options	*load_options(int ac, char **args, bool debug);
 void		display(t_property *data, t_options *options);
 
 void		display_list(t_property *list, char const *param);
+
+bool		print_equation(t_property *property, char const *id);
 
 char		*get_consumed(t_property **props, char const *id);
 

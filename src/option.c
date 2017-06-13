@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:32:46 2017 romain pillot
-** Last update Tue Jun 13 06:58:25 2017 romain pillot
+** Last update Tue Jun 13 16:36:41 2017 romain pillot
 */
 
 #include "parser.h"
@@ -22,10 +22,10 @@ static bool	parse_options(int ac, char **args, t_options *options)
   while (args[++i])
     {
       if (str_equals(args[i], "-i"))
-	if (!args[++i] || options->id)
-	  return (false);
+	if (!args[i + 1])
+	  options->id = str_dupl("");
 	else
-	  options->id = str_dupl(args[i]);
+	  options->id = str_dupl(args[++i]);
       else if (str_equals(args[i], "-e"))
 	if (options->print_equation)
 	  return (false);
