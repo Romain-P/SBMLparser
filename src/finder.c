@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Tue Jun 13 13:13:31 2017 romain pillot
+** Last update Tue Jun 13 14:42:00 2017 romain pillot
 */
 
 #include "parser.h"
@@ -67,15 +67,32 @@ static bool	display_products
   return (true);
 }
 
-static bool	display_reactions(t_property *data)
+static bool	display_reactions(t_property *data, const char *id)
 {
-  
-  return (true);
+
 }
 
-static bool	display_reaction_infos(t_property *data)
+static bool	display_reaction_infos(t_property *data, const char *id)
 {
+  t_property	*found;
+  t_property	**properties;
+  int		i;
 
+  properties = (t_property **) data->sub_properties->values;
+  if (!(found = property_findbyid(properties, id)) ||
+      !(properties = (t_property **) found->sub_properties->values))
+    return (false);
+  while (*properties++ && (i = - 1))
+    if (properties[-1]->tagtype == LIST_REACTANTS)
+      {
+	printf("List of reactants of reaction %s\n", id);
+	display_list(properties[-1], "species");
+      }
+    else if (properties[-1]->tagtype == LIST_PRODUCTS)
+      {
+	printf("List of products of reaction %s\n", id);
+	display_list(properties[-1], "species");
+      }
   return (true);
 }
 
@@ -93,8 +110,8 @@ void		display(t_property *data, t_options *options)
       !(found = property_findbyid(properties, id)) ||
       !((found->tagtype == COMPARTMENT &&
 	 display_products(data, id, array, false)) ||
-	(found->tagtype == SPECIES && display_reactions(data)) ||
-	(found->tagtype == REACTION && display_reaction_infos(data))))
+	(found->tagtype == SPECIES && display_reactions(data, id)) ||
+	(found->tagtype == REACTION && display_reaction_infos(data, id))))
     if (!id)
       display_tags(data, array, true);
     else
