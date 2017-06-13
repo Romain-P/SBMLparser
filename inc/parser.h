@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Tue Jun 13 08:04:34 2017 romain pillot
+** Last update Tue Jun 13 10:02:54 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -74,6 +74,10 @@ void		display(t_property *data, t_options *options);
 t_property	*property_create(const char *name, t_property *parent);
 
 bool		property_exists(t_property **props, t_property *prop);
+
+t_property	*property_findbyid(t_property **props, char const *id);
+
+t_property	*property_findbytype(t_property **pros, t_tagtype type);
 
 void		property_destroy(t_property *property, bool recursively);
 
