@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue May 23 14:02:04 2017 romain pillot
-** Last update Tue Jun 13 12:35:28 2017 romain pillot
+** Last update Tue Jun 13 17:35:19 2017 romain pillot
 */
 
 #ifndef UTIL_H_
@@ -24,6 +24,8 @@ void	tab_free(void ***ptr);
 void	tab_sort(char **tab);
 
 int	nbr_parsestring(const char *str);
+
+char	*str_concat(const char *a, const char *b, bool free_a);
 
 bool	str_contains(const char *str, const char *charset);
 

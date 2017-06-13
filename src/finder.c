@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Tue Jun 13 15:52:42 2017 romain pillot
+** Last update Tue Jun 13 18:16:58 2017 romain pillot
 */
 
 #include "parser.h"
@@ -70,29 +70,29 @@ static bool	display_products
 static bool	display_reactions(t_property *data, const char *id, t_array *array)
 {
   t_property	*found;
-  t_property	**properties;
+  t_property	**props;
   int		i;
-  char		*consumed;
+  char		*cons;
 
-  properties = (t_property **) data->sub_properties->values;
-  if (!(found = property_findbytype(properties, LIST_REACTIONS)) ||
-      !(properties = (t_property **) found->sub_properties->values))
+  props = (t_property **) data->sub_properties->values;
+  if (!(found = property_findbytype(props, LIST_REACTIONS)) ||
+      !(props = (t_property **) found->sub_properties->values))
     return (false);
   i = -1;
-  while (properties[++i])
-    if (consumed =
-	get_consumed((t_property **) properties[i]->sub_properties->values, id))
-      array_add(array, properties[i]);
-  if (!array->length)
-    return (false);
+  while (props[++i])
+    if ((cons =
+	 get_consumed((t_property **) props[i]->sub_properties->values, id)))
+      array_add(array, str_concat(str_concat(property_getvalue(props[i], "id"),
+					     " (", false), cons, true));
+  if ((i = -1) && !array->length)
+      return (false);
   printf("List of reactions consuming species %s (quantities)\n", id);
   tab_sort((char **) array->values);
-  i = -1;
   while (++i < array->length)
-    printf("----->%s (%s)\n",
-	   property_getvalue((t_property *) array->values[i], "id"),
-	   get_consumed((t_property **)
-			((t_property *) array->values[i])->sub_properties->values, id));
+    {
+      printf("----->%s)\n", array->values[i]);
+      FREE(array->values[i]);
+    }
   return (true);
 }
 
@@ -135,7 +135,9 @@ void		display(t_property *data, t_options *options)
       !((found->tagtype == COMPARTMENT &&
 	 display_products(data, id, array, false)) ||
 	(found->tagtype == SPECIES && display_reactions(data, id, array)) ||
-	(found->tagtype == REACTION && display_reaction_infos(data, id))))
+	(found->tagtype == REACTION && (!options->print_equation ?
+					display_reaction_infos(data, id) :
+					print_equation(found, id)))))
     if (!id)
       display_tags(data, array, true);
     else

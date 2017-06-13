@@ -5,7 +5,7 @@
 ## Login   <romain.pillot@epitech.net>
 ## 
 ## Started on  Sun Jun  4 17:02:11 2017 romain pillot
-## Last update Tue Jun 13 12:36:06 2017 romain pillot
+## Last update Tue Jun 13 18:17:22 2017 romain pillot
 ##
 
 CC	=	gcc
@@ -15,6 +15,7 @@ NAME	=	SBMLparser
 RM	=	rm -f
 
 SRCS	=	src/main.c			\
+		src/reaction.c			\
 		src/finder.c			\
 		src/finder_util.c		\
 		src/option.c			\
@@ -35,7 +36,8 @@ SRCS	=	src/main.c			\
 		src/util/str/str_equals.c	\
 		src/util/str/str_length.c	\
 		src/util/str/str_reduce.c	\
-		src/util/str/str_split.c
+		src/util/str/str_split.c	\
+		src/util/str/str_concat.c
 
 OBJS	=	$(SRCS:.c=.o)
 

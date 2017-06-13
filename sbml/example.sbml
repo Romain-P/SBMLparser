@@ -21,6 +21,16 @@
           <speciesReference stoichiometry="1" species="Compound1034"/>
         </listOfProducts>
       </reaction>
+      <reaction compartment="Lol" reversible="true" name="Hexokinase-3" id="Reaction1231" >
+	<listOfReactants>
+	  <speciesReference stoichiometry="2" species="Compound1851"/>
+	  <speciesReference stoichiometry="1" species="Compound414"/>
+	</listOfReactants>
+	<listOfProducts>
+	  <speciesReference stoichiometry="1" species="Compound1083"/>
+	  <speciesReference stoichiometry="1" species="Compound1034"/>
+	</listOfProducts>
+      </reaction>
     </listOfReactions>
   </model>
 </sbml>
