@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Wed Jun 14 05:34:13 2017 romain pillot
+** Last update Wed Jun 14 09:13:38 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -26,6 +26,7 @@
 typedef enum	s_tagtype
 {
   UNDEFINED,
+  MODEL,
   COMPARTMENT,
   SPECIES,
   REACTION,
@@ -83,6 +84,8 @@ bool		property_exists(t_property **props, t_property *prop);
 
 t_property	*property_findbyid(t_property **props, char const *id);
 
+t_property	*property_findby(t_property **props, char const *k, char const *v);
+
 char		*property_getvalue(t_property *property, char const *key);
 
 t_property	*property_findbytype(t_property **pros, t_tagtype type);
@@ -93,6 +96,8 @@ char		*property_name(const char *str);
 
 void		property_sort_full(t_property **props);
 
+void		parameter_sort(t_pair **params);
+
 bool		json_species(t_property **props, char const *id);
 
 bool		json_compartment(t_property **props, char const *id);
@@ -100,5 +105,9 @@ bool		json_compartment(t_property **props, char const *id);
 bool		json_reaction(t_property **props, char const *id);
 
 bool		json_basic(t_property **props);
+
+void		json_print_property(t_property *p);
+
+t_property	*json_get_property(t_property *list, t_property *s, char const *id);
 
 #endif /** !PARSER_H_ **/

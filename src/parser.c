@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 08:17:09 2017 romain pillot
-** Last update Tue Jun 13 12:24:21 2017 romain pillot
+** Last update Wed Jun 14 07:29:04 2017 romain pillot
 */
 
 #include "parser.h"
@@ -15,6 +15,7 @@
 static t_tag const tags[] =
   {
     {COMPARTMENT, "compartment"},
+    {MODEL, "model"},
     {SPECIES, "species"},
     {REACTION, "reaction"},
     {SPECIES_REF, "speciesReference"},

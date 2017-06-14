@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue Jun 13 11:59:25 2017 romain pillot
-** Last update Tue Jun 13 15:38:37 2017 romain pillot
+** Last update Wed Jun 14 08:11:58 2017 romain pillot
 */
 
 #include "parser.h"
@@ -63,6 +63,31 @@ char		*get_consumed(t_property **properties, char const *id)
       value = property_getvalue(props[i], "species");
       if (str_equals(value, id))
 	return (property_getvalue(props[i], "stoichiometry"));
+    }
+  return (NULL);
+}
+
+t_property	*property_findby
+(t_property **props, char const *key, char const *value)
+{
+  int		i;
+  int		j;
+  t_pair	**pairs;
+  t_property	*found;
+
+  i = -1;
+  while (props && props[++i])
+    {
+      pairs = (t_pair **) props[i]->parameters->values;
+      j = -1;
+      while (++j < props[i]->parameters->length)
+	if (str_equals(pairs[j]->key, key) &&
+	    str_equals(pairs[j]->value, value))
+	  return (props[i]);
+      if ((found =
+	   property_findby((t_property **)
+			   props[i]->sub_properties->values, key, value)))
+	return (found);
     }
   return (NULL);
 }

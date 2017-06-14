@@ -5,7 +5,7 @@
 ## Login   <romain.pillot@epitech.net>
 ## 
 ## Started on  Sun Jun  4 17:02:11 2017 romain pillot
-## Last update Wed Jun 14 04:53:07 2017 romain pillot
+## Last update Wed Jun 14 08:14:24 2017 romain pillot
 ##
 
 CC	=	gcc
@@ -16,6 +16,7 @@ RM	=	rm -f
 
 SRCS	=	src/main.c			\
 		src/json_converter.c		\
+		src/json_helper.c		\
 		src/equation.c			\
 		src/finder.c			\
 		src/finder_util.c		\

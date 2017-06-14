@@ -5,13 +5,13 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 13:01:14 2017 romain pillot
-** Last update Tue Jun 13 16:09:35 2017 romain pillot
+** Last update Wed Jun 14 08:18:30 2017 romain pillot
 */
 
 #include <stdbool.h>
 #include "parser.h"
 
-static void	parameter_sort(t_pair **params)
+void		parameter_sort(t_pair **params)
 {
   t_pair	*tmp;
   bool		changed;
