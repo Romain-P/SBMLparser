@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 09:13:21 2017 romain pillot
-** Last update Wed Jun 14 10:16:02 2017 romain pillot
+** Last update Wed Jun 14 13:20:26 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -51,7 +51,7 @@ t_property	*property_findbyid(t_property **props, char const *id)
 	    str_equals(pairs[j]->value, id))
 	  return (props[i]);
       if ((found =
-	   property_findbyid((t_property **) props[i]->sub_properties->values, id)))
+	   property_findbyid((t_property **)props[i]->sub_properties->values, id)))
 	return (found);
     }
   return (NULL);

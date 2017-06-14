@@ -5,7 +5,7 @@
 ## Login   <romain.pillot@epitech.net>
 ## 
 ## Started on  Sun Jun  4 17:02:11 2017 romain pillot
-## Last update Wed Jun 14 08:14:24 2017 romain pillot
+## Last update Wed Jun 14 13:28:06 2017 romain pillot
 ##
 
 CC	=	gcc
@@ -33,6 +33,7 @@ SRCS	=	src/main.c			\
 		src/util/str/str_contains.c	\
 		src/util/str/str_starts.c	\
 		src/util/str/tab_sort.c		\
+		src/util/str/tab_contains.c	\
 		src/util/str/str_countchar.c	\
 		src/util/str/str_duplicate.c	\
 		src/util/str/str_equals.c	\

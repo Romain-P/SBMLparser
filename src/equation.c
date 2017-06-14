@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue Jun 13 16:21:34 2017 romain pillot
-** Last update Wed Jun 14 10:22:55 2017 romain pillot
+** Last update Wed Jun 14 13:20:07 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -27,7 +27,8 @@ static void	print_list(t_property **properties, t_tagtype type)
   while (props[++i])
     array_add(array,
 	      str_concat(str_concat(property_getvalue(props[i], "stoichiometry"),
-				    " ", false), property_getvalue(props[i], "species"), true));
+				    " ", false), property_getvalue(props[i], "species"),
+			 true));
   tab_sort((char **) array->values);
   i = -1;
   while (++i < array->length)

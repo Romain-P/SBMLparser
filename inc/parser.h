@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Wed Jun 14 11:31:05 2017 romain pillot
+** Last update Wed Jun 14 13:29:29 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -106,7 +106,7 @@ bool		json_compartment(t_property **props, char const *id);
 
 bool		json_reaction(t_property **props, char const *id);
 
-void		json_print_property(t_property *p);
+void		json_print_property(t_property *p, char **properties);
 
 void		json_print_species(t_property *list, char const *id);
 

@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 08:14:15 2017 romain pillot
-** Last update Wed Jun 14 11:35:50 2017 romain pillot
+** Last update Wed Jun 14 13:39:42 2017 romain pillot
 */
 
 #include <stdio.h>
@@ -42,13 +42,13 @@ t_property	*json_get_property(t_property *list,
 	continue;
       if (!first)
 	printf(",\n");
-      json_print_property(reactions[i]);
+      json_print_property(reactions[i], NULL);
       first = false;
     }
   return (NULL);
 }
 
-void		json_print_property(t_property *p)
+void		json_print_property(t_property *p, char **filter)
 {
   t_pair	**pairs;
   int		i;
@@ -60,8 +60,9 @@ void		json_print_property(t_property *p)
   i = -1;
   printf("\t    {\n");
   while (pairs && pairs[++i])
-    printf(!i ? "\t\t\"%s\":  \"%s\"" :
-	   ",\n\t\t\"%s\":  \"%s\"", pairs[i]->key, pairs[i]->value);
+    if (!filter || tab_contains(filter, pairs[i]->key))
+      printf(!i ? "\t\t\"%s\":  \"%s\"" :
+	     ",\n\t\t\"%s\":  \"%s\"", pairs[i]->key, pairs[i]->value);
   printf("\n\t    }");
 }
 
@@ -79,7 +80,7 @@ void		json_print_species(t_property *list, char const *id)
       {
 	if (!first)
 	  printf(",\n");
-	json_print_property(subs[i]);
+	json_print_property(subs[i], NULL);
 	first = false;
       }
 }

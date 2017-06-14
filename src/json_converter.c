@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 04:52:57 2017 romain pillot
-** Last update Wed Jun 14 11:29:36 2017 romain pillot
+** Last update Wed Jun 14 13:37:20 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -36,7 +36,7 @@ bool		json_species(t_property **props, char const *id)
     {
       printf(!i ? "\t\"%s\":  [\n" :
 	     ",\n\t\"%s\":  [\n", subs[i]->name);
-      json_print_property(json_get_property(subs[i], species, id));
+      json_print_property(json_get_property(subs[i], species, id), NULL);
       printf("\n\t]");
     }
   printf("\n}\n");
@@ -53,7 +53,7 @@ bool		json_compartment(t_property **pros, char const *id)
   comp = property_findbytype(pros, LIST_COMPARTMENTS);
   comp = property_findbyid(childs(comp), id);
   printf("{\n\t\"listOfCompartments\": [\n");
-  json_print_property(comp);
+  json_print_property(comp, NULL);
   printf("\n\t],\n\t\"listOfReactions\": [\n");
   subs = childs(property_findbytype(pros, LIST_REACTIONS));
   i = -1;
@@ -63,7 +63,7 @@ bool		json_compartment(t_property **pros, char const *id)
       {
 	if (!first)
 	  printf(",\n");
-	json_print_property(subs[i]);
+	json_print_property(subs[i], NULL);
 	first = false;
       }
   printf("\n\t],\n\t\"listOfSpecies\": [\n");
@@ -83,7 +83,7 @@ static void	json_display_list(t_property *list)
     {
       if (i)
 	printf(",\n");
-      json_print_property(subs[i]);
+      json_print_property(subs[i], (char*[]) {"species", "stoichiometry", 0});
     }
 }
 
