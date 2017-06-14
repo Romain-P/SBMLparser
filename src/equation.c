@@ -5,13 +5,13 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue Jun 13 16:21:34 2017 romain pillot
-** Last update Tue Jun 13 18:30:10 2017 romain pillot
+** Last update Wed Jun 14 10:22:55 2017 romain pillot
 */
 
-#include "util.h"
-#include "parser.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "util.h"
+#include "parser.h"
 
 static void	print_list(t_property **properties, t_tagtype type)
 {

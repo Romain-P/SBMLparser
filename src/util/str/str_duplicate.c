@@ -5,11 +5,11 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 03:24:50 2017 romain pillot
-** Last update Sun May 28 03:28:35 2017 romain pillot
+** Last update Wed Jun 14 10:20:16 2017 romain pillot
 */
 
-#include "util.h"
 #include <stdlib.h>
+#include "util.h"
 
 char	*str_dupl(const char *str)
 {

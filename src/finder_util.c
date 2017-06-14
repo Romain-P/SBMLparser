@@ -5,13 +5,13 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue Jun 13 11:59:25 2017 romain pillot
-** Last update Wed Jun 14 08:11:58 2017 romain pillot
+** Last update Wed Jun 14 10:23:21 2017 romain pillot
 */
 
-#include "parser.h"
-#include "util.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "parser.h"
+#include "util.h"
 
 char		*property_getvalue(t_property *property, char const *key)
 {

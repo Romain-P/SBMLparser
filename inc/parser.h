@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Wed Jun 14 09:13:38 2017 romain pillot
+** Last update Wed Jun 14 10:19:34 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -23,7 +23,7 @@
 
 # include "array.h"
 
-typedef enum	s_tagtype
+typedef enum	e_tagtype
 {
   UNDEFINED,
   MODEL,
@@ -84,7 +84,9 @@ bool		property_exists(t_property **props, t_property *prop);
 
 t_property	*property_findbyid(t_property **props, char const *id);
 
-t_property	*property_findby(t_property **props, char const *k, char const *v);
+t_property	*property_findby(t_property **props,
+				 char const *k,
+				 char const *v);
 
 char		*property_getvalue(t_property *property, char const *key);
 
@@ -108,6 +110,8 @@ bool		json_basic(t_property **props);
 
 void		json_print_property(t_property *p);
 
-t_property	*json_get_property(t_property *list, t_property *s, char const *id);
+t_property	*json_get_property(t_property *list,
+				   t_property *s,
+				   char const *id);
 
 #endif /** !PARSER_H_ **/

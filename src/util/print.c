@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue May 23 13:51:46 2017 romain pillot
-** Last update Tue May 23 14:45:53 2017 romain pillot
+** Last update Wed Jun 14 10:20:40 2017 romain pillot
 */
 
 #include <stdio.h>
@@ -17,7 +17,7 @@ static bool	private_print(const int channel, const char *str)
   int		len;
 
   len = 0;
-  while(str && str[len] && ++len);
+  while (str && str[len] && ++len);
   return (len ? write(channel, str, len) : false);
 }
 

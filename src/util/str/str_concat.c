@@ -5,11 +5,11 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue Jun 13 17:31:21 2017 romain pillot
-** Last update Tue Jun 13 18:32:04 2017 romain pillot
+** Last update Wed Jun 14 10:19:55 2017 romain pillot
 */
 
-#include "util.h"
 #include <stdlib.h>
+#include "util.h"
 
 char	*str_concat(char *a, const char *b, bool free_a)
 {

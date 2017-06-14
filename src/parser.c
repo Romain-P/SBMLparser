@@ -5,14 +5,14 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 08:17:09 2017 romain pillot
-** Last update Wed Jun 14 07:29:04 2017 romain pillot
+** Last update Wed Jun 14 10:17:03 2017 romain pillot
 */
 
+#include <stdlib.h>
 #include "parser.h"
 #include "util.h"
-#include <stdlib.h>
 
-static t_tag const tags[] =
+static t_tag const g_tags[] =
   {
     {COMPARTMENT, "compartment"},
     {MODEL, "model"},
@@ -32,11 +32,11 @@ static void	parse_tagtype(t_property *prop)
   int		i;
 
   i = -1;
-  while (tags[++i].type != UNDEFINED)
+  while (g_tags[++i].type != UNDEFINED)
     {
-      if (str_equals(prop->name, tags[i].name))
+      if (str_equals(prop->name, g_tags[i].name))
 	{
-	  prop->tagtype = tags[i].type;
+	  prop->tagtype = g_tags[i].type;
 	  break;
 	}
     }

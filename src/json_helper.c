@@ -5,13 +5,13 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 08:14:15 2017 romain pillot
-** Last update Wed Jun 14 09:37:46 2017 romain pillot
+** Last update Wed Jun 14 10:21:45 2017 romain pillot
 */
 
-#include "parser.h"
-#include <stdlib.h>
-#include "util.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "parser.h"
+#include "util.h"
 
 static t_property       **childs(t_property *property)
 {
@@ -28,7 +28,8 @@ t_property	*json_get_property(t_property *list,
   bool		first;
 
   if (list->tagtype == LIST_COMPARTMENTS)
-    return (property_findbyid(childs(list), property_getvalue(species, "compartment")));
+    return (property_findbyid(childs(list),
+			      property_getvalue(species, "compartment")));
   else if (list->tagtype == LIST_SPECIES)
     return (property_findbyid(childs(list), id));
   reactions = childs(list);
@@ -39,7 +40,7 @@ t_property	*json_get_property(t_property *list,
       found = NULL;
       if (!(found = property_findby(childs(reactions[i]), "species", id)))
 	continue;
-      if(!first)
+      if (!first)
 	printf(",\n");
       json_print_property(reactions[i]);
       first = false;
@@ -53,7 +54,7 @@ void		json_print_property(t_property *p)
   int		i;
 
   if (!p)
-    return;
+    return ;
   pairs = (t_pair **) p->parameters->values;
   parameter_sort(pairs);
   i = -1;

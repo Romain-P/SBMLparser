@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 13:01:14 2017 romain pillot
-** Last update Wed Jun 14 08:18:30 2017 romain pillot
+** Last update Wed Jun 14 10:16:15 2017 romain pillot
 */
 
 #include <stdbool.h>
@@ -69,7 +69,6 @@ static void	property_sort(t_property **props)
 
 void	property_sort_full(t_property **props)
 {
-  
   int	i;
 
   property_sort(props);

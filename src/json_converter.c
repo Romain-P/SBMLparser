@@ -5,13 +5,13 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 04:52:57 2017 romain pillot
-** Last update Wed Jun 14 09:20:28 2017 romain pillot
+** Last update Wed Jun 14 10:22:43 2017 romain pillot
 */
 
-#include "parser.h"
-#include "util.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "parser.h"
+#include "util.h"
 
 static t_property	**childs(t_property *property)
 {
@@ -45,18 +45,15 @@ bool		json_species(t_property **props, char const *id)
 
 bool	json_compartment(t_property **pros, char const *id)
 {
-  
   return (true);
 }
 
 bool	json_reaction(t_property **props, char const *id)
 {
-  
   return (true);
 }
 
 bool	json_basic(t_property **props)
 {
-  
   return (true);
 }

@@ -5,12 +5,12 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 09:13:21 2017 romain pillot
-** Last update Tue Jun 13 12:24:57 2017 romain pillot
+** Last update Wed Jun 14 10:16:02 2017 romain pillot
 */
 
+#include <stdlib.h>
 #include "parser.h"
 #include "util.h"
-#include <stdlib.h>
 
 t_property	*property_create(const char *name, t_property *parent)
 {
@@ -66,7 +66,8 @@ t_property	*property_findbytype(t_property **props, t_tagtype type)
       if ((*props++)->tagtype == type)
 	return (props[-1]);
       if ((found =
-	   property_findbytype((t_property **) props[-1]->sub_properties->values, type)))
+	   property_findbytype((t_property **)
+			       props[-1]->sub_properties->values, type)))
 	return (found);
     }
   return (NULL);
@@ -87,7 +88,8 @@ void	property_destroy(t_property *property, bool recursively)
   i = -1;
   if (recursively)
     while (++i < property->sub_properties->length)
-      property_destroy((t_property *) property->sub_properties->values[i], true);	
+      property_destroy((t_property *)
+		       property->sub_properties->values[i], true);
   array_destroy(&property->sub_properties, false);
   FREE(property);
 }

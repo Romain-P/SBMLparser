@@ -5,12 +5,12 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Wed Jun 14 05:38:05 2017 romain pillot
+** Last update Wed Jun 14 10:25:24 2017 romain pillot
 */
 
+#include <stdio.h>
 #include "parser.h"
 #include "util.h"
-#include <stdio.h>
 
 static void	display_tags(t_property *data, t_array *array, bool root)
 {
@@ -27,7 +27,7 @@ static void	display_tags(t_property *data, t_array *array, bool root)
 	display_tags(props[i], array, false);
     }
   if (!root)
-    return;
+    return ;
   property_sort_full((props = ((t_property **) array->values)));
   while (props && *props)
     {
@@ -67,7 +67,9 @@ static bool	display_products
   return (true);
 }
 
-static bool	display_reactions(t_property *data, const char *id, t_array *array)
+static bool	display_reactions(t_property *data,
+				  const char *id,
+				  t_array *array)
 {
   t_property	*found;
   t_property	**props;
@@ -127,16 +129,16 @@ void		display(t_property *data, t_options *options)
   t_property	*found;
   char		*id;
 
-  array = array_create();
   id = options->id;
   props = (t_property **) data->sub_properties->values;
-  if (!id ||
+  if (!(array = array_create()) || !id ||
       !(found = property_findbyid(props, id)) ||
       !((found->tagtype == COMPARTMENT &&
 	 (options->json ? json_compartment(props, id) :
 	  display_products(data, id, array, false))) ||
 	(found->tagtype == SPECIES && (options->json ?
-				       json_species(props, id) : display_reactions(data, id, array)) ||
+				       json_species(props, id) :
+				       display_reactions(data, id, array)) ||
 	(found->tagtype == REACTION && (!options->print_equation ?
 					options->json ? json_reaction(props, id) :
 					display_reaction_infos(data, id) :

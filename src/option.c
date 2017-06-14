@@ -5,14 +5,14 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:32:46 2017 romain pillot
-** Last update Wed Jun 14 05:36:54 2017 romain pillot
+** Last update Wed Jun 14 10:17:50 2017 romain pillot
 */
 
-#include "parser.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "util.h"
+#include "parser.h"
 
 static bool	parse_options(int ac, char **args, t_options *options)
 {
