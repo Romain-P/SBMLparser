@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 08:14:15 2017 romain pillot
-** Last update Wed Jun 14 10:21:45 2017 romain pillot
+** Last update Wed Jun 14 11:35:50 2017 romain pillot
 */
 
 #include <stdio.h>
@@ -63,4 +63,23 @@ void		json_print_property(t_property *p)
     printf(!i ? "\t\t\"%s\":  \"%s\"" :
 	   ",\n\t\t\"%s\":  \"%s\"", pairs[i]->key, pairs[i]->value);
   printf("\n\t    }");
+}
+
+void		json_print_species(t_property *list, char const *id)
+{
+  int		i;
+  t_property	**subs;
+  bool		first;
+
+  subs = childs(list);
+  i = -1;
+  first = true;
+  while (subs[++i])
+    if (str_equals(property_getvalue(subs[i], "compartment"), id))
+      {
+	if (!first)
+	  printf(",\n");
+	json_print_property(subs[i]);
+	first = false;
+      }
 }

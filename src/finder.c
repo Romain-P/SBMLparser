@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Wed Jun 14 10:25:24 2017 romain pillot
+** Last update Wed Jun 14 11:00:18 2017 romain pillot
 */
 
 #include <stdio.h>
@@ -143,10 +143,9 @@ void		display(t_property *data, t_options *options)
 					options->json ? json_reaction(props, id) :
 					display_reaction_infos(data, id) :
 					print_equation(found, id))))))
-	if (!id)
+    if (!id)
       display_tags(data, array, true);
     else
-      options->json ? json_basic(props) :
-	display_products(data, id, array, true);
+      display_products(data, id, array, true);
   array_destroy(&array, false);
 }

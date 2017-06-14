@@ -11,7 +11,7 @@
       <species compartment="Cytosol" name="Adenosine triphosphate" id="Compound414"/>
     </listOfSpecies>
     <listOfReactions>
-      <reaction compartment="Lol" reversible="false" name="Hexokinase-3" id="Reaction1232" >
+      <reaction compartment="Cytosol" reversible="false" name="Hexokinase-3" id="Reaction1232" >
         <listOfReactants>
           <speciesReference stoichiometry="1" species="Compound1851"/>
           <speciesReference stoichiometry="1" species="Compound414"/>
@@ -21,7 +21,7 @@
           <speciesReference stoichiometry="1" species="Compound1034"/>
         </listOfProducts>
       </reaction>
-      <reaction compartment="Lol" reversible="true" name="Hexokinase-3" id="Reaction1231" >
+      <reaction compartment="Cytosol" reversible="true" name="Hexokinase-3" id="Reaction1231" >
 	<listOfReactants>
 	  <speciesReference stoichiometry="2" species="Compound1851"/>
 	  <speciesReference stoichiometry="1" species="Compound414"/>

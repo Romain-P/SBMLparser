@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 04:52:57 2017 romain pillot
-** Last update Wed Jun 14 10:46:05 2017 romain pillot
+** Last update Wed Jun 14 11:29:36 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -43,8 +43,32 @@ bool		json_species(t_property **props, char const *id)
   return (true);
 }
 
-bool	json_compartment(t_property **pros, char const *id)
+bool		json_compartment(t_property **pros, char const *id)
 {
+  t_property	*comp;
+  t_property	**subs;
+  int		i;
+  bool		first;
+
+  comp = property_findbytype(pros, LIST_COMPARTMENTS);
+  comp = property_findbyid(childs(comp), id);
+  printf("{\n\t\"listOfCompartments\": [\n");
+  json_print_property(comp);
+  printf("\n\t],\n\t\"listOfReactions\": [\n");
+  subs = childs(property_findbytype(pros, LIST_REACTIONS));
+  i = -1;
+  first = true;
+  while (subs[++i])
+    if (str_equals(property_getvalue(subs[i], "compartment"), id))
+      {
+	if (!first)
+	  printf(",\n");
+	json_print_property(subs[i]);
+	first = false;
+      }
+  printf("\n\t],\n\t\"listOfSpecies\": [\n");
+  json_print_species(property_findbytype(pros, LIST_SPECIES), id);
+  printf("\n\t]\n}\n");
   return (true);
 }
 
@@ -76,10 +100,5 @@ bool		json_reaction(t_property **props, char const *id)
   printf("\n\t],\n\t\"%s\":  [\n", "listOfProducts");
   json_display_list(property_findbytype(childs(r), LIST_PRODUCTS));
   printf("\n\t]\n}\n");
-  return (true);
-}
-
-bool	json_basic(t_property **props)
-{
   return (true);
 }
