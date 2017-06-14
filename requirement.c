@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 07:05:40 2017 romain pillot
-** Last update Tue Jun 13 06:41:18 2017 romain pillot
+** Last update Wed Jun 14 14:41:39 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -34,8 +34,8 @@ static char	*str_dupl(char const *str)
 
 static char	*str_reduce(char *str)
 {
-  int   i;
-  int   j;
+  int		i;
+  int		j;
 
   i = (j = 0);
   while (str && str[i])
@@ -56,8 +56,8 @@ static char	*str_reduce(char *str)
 
 static int	str_countchar(const char *str)
 {
-  int   i;
-  int   j;
+  int		i;
+  int		j;
 
   i = (j = 0);
   while (str && str[i] && ++i)
@@ -68,12 +68,12 @@ static int	str_countchar(const char *str)
 
 char	**my_strtowordtab_synthesis(char const *str)
 {
-  char  **tab;
-  char  *hold;
+  char	**tab;
+  char	*hold;
   char	*dup;
-  int   i;
-  int   j;
-  int   k;
+  int	i;
+  int	j;
+  int	k;
 
   i = -1;
   hold = (dup = str_reduce(str_dupl(str)));
