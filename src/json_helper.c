@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 08:14:15 2017 romain pillot
-** Last update Wed Jun 14 13:39:42 2017 romain pillot
+** Last update Wed Jun 14 14:18:36 2017 romain pillot
 */
 
 #include <stdio.h>
@@ -20,21 +20,23 @@ static t_property       **childs(t_property *property)
 
 t_property	*json_get_property(t_property *list,
 				   t_property *species,
-				   char const *id)
+				   char const *id,
+				   bool print)
 {
   t_property	**reactions;
   int		i;
   t_property	*found;
   bool		first;
 
-  if (list->tagtype == LIST_COMPARTMENTS)
+  if ((first = true) && list->tagtype == LIST_COMPARTMENTS)
     return (property_findbyid(childs(list),
 			      property_getvalue(species, "compartment")));
   else if (list->tagtype == LIST_SPECIES)
     return (property_findbyid(childs(list), id));
+  else if (list->tagtype != LIST_REACTIONS || !print)
+    return (NULL);
   reactions = childs(list);
   i = -1;
-  first = true;
   while (reactions[++i])
     {
       found = NULL;

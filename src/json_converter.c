@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 04:52:57 2017 romain pillot
-** Last update Wed Jun 14 13:37:20 2017 romain pillot
+** Last update Wed Jun 14 14:20:40 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -29,14 +29,16 @@ bool		json_species(t_property **props, char const *id)
   subs = childs(property_findbytype(props, LIST_SPECIES));
   species = property_findbyid(subs, id);
   subs = childs(p);
-  property_sort_full(subs);
   printf("{\n");
   i = -1;
   while (subs[++i])
     {
+      if (!(p = json_get_property(subs[i], species, id, false)) &&
+	  subs[i]->tagtype != LIST_REACTIONS)
+	continue;
       printf(!i ? "\t\"%s\":  [\n" :
 	     ",\n\t\"%s\":  [\n", subs[i]->name);
-      json_print_property(json_get_property(subs[i], species, id), NULL);
+      json_print_property(json_get_property(subs[i], species, id, true), NULL);
       printf("\n\t]");
     }
   printf("\n}\n");

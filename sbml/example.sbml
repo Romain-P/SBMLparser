@@ -4,12 +4,16 @@
     <listOfCompartments>
       <compartment name="Homo sapiens, Cell, Cytosol" id="Cytosol"/>
     </listOfCompartments>
+    <listofshizeft>
+    </listofshizeft>
     <listOfSpecies>
       <species compartment="Cytosol" name="Adenosine diphosphate" id="Compound1034"/>
       <species compartment="Cytosol" name="Glucose 6-phosphate" id="Compound1083"/>
       <species compartment="Cytosol" name="Alpha-D-Glucose" id="Compound1851"/>
       <species compartment="Cytosol" name="Adenosine triphosphate" id="Compound414"/>
     </listOfSpecies>
+    <listofshit>
+    </listofshit>
     <listOfReactions>
       <reaction compartment="Cytosol" reversible="false" name="Hexokinase-3" id="Reaction1232" >
         <listOfReactants>
