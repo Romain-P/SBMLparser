@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Thu Nov 24 11:15:51 2016 romain pillot
-** Last update Tue Jun 13 16:24:49 2017 romain pillot
+** Last update Wed Jun 14 05:34:13 2017 romain pillot
 */
 
 #ifndef PARSER_H_
@@ -53,7 +53,7 @@ typedef struct	s_options
 {
   char		*id;
   bool		print_equation;
-  bool		json_format;
+  bool		json;
 }		t_options;
 
 typedef struct		s_property
@@ -92,5 +92,13 @@ void		property_destroy(t_property *property, bool recursively);
 char		*property_name(const char *str);
 
 void		property_sort_full(t_property **props);
+
+bool		json_species(t_property **props, char const *id);
+
+bool		json_compartment(t_property **props, char const *id);
+
+bool		json_reaction(t_property **props, char const *id);
+
+bool		json_basic(t_property **props);
 
 #endif /** !PARSER_H_ **/

@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:32:46 2017 romain pillot
-** Last update Tue Jun 13 16:36:41 2017 romain pillot
+** Last update Wed Jun 14 05:36:54 2017 romain pillot
 */
 
 #include "parser.h"
@@ -32,10 +32,10 @@ static bool	parse_options(int ac, char **args, t_options *options)
 	else
 	  options->print_equation = true;
       else if (str_equals(args[i], "-json"))
-	if (options->json_format)
+	if (options->json)
 	  return (false);
 	else
-	  options->json_format = true;
+	  options->json = true;
       else
 	return (false);
     }
@@ -50,7 +50,7 @@ t_options	*load_options(int ac, char **args, bool debug)
     return (NULL);
   options->id = NULL;
   options->print_equation = false;
-  options->json_format = false;
+  options->json = false;
   if (!parse_options(ac, args, options) && debug)
     {
       FREE(options->id);

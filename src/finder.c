@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Mon Jun 12 15:27:48 2017 romain pillot
-** Last update Tue Jun 13 18:16:58 2017 romain pillot
+** Last update Wed Jun 14 05:38:05 2017 romain pillot
 */
 
 #include "parser.h"
@@ -123,24 +123,28 @@ static bool	display_reaction_infos(t_property *data, const char *id)
 void		display(t_property *data, t_options *options)
 {
   t_array	*array;
-  t_property	**properties;
+  t_property	**props;
   t_property	*found;
   char		*id;
 
   array = array_create();
   id = options->id;
-  properties = (t_property **) data->sub_properties->values;
+  props = (t_property **) data->sub_properties->values;
   if (!id ||
-      !(found = property_findbyid(properties, id)) ||
+      !(found = property_findbyid(props, id)) ||
       !((found->tagtype == COMPARTMENT &&
-	 display_products(data, id, array, false)) ||
-	(found->tagtype == SPECIES && display_reactions(data, id, array)) ||
+	 (options->json ? json_compartment(props, id) :
+	  display_products(data, id, array, false))) ||
+	(found->tagtype == SPECIES && (options->json ?
+				       json_species(props, id) : display_reactions(data, id, array)) ||
 	(found->tagtype == REACTION && (!options->print_equation ?
+					options->json ? json_reaction(props, id) :
 					display_reaction_infos(data, id) :
-					print_equation(found, id)))))
-    if (!id)
+					print_equation(found, id))))))
+	if (!id)
       display_tags(data, array, true);
     else
-      display_products(data, id, array, true);
+      options->json ? json_basic(props) :
+	display_products(data, id, array, true);
   array_destroy(&array, false);
 }
