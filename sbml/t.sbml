@@ -14,7 +14,6 @@
       <reaction compartment="Lol" reversible="false" name="Hexokinase-3" id="Reaction1232" >
         <listOfReactants>
           <speciesReference stoichiometry="1" species="Compound1851"/>
-          <speciesReference stoichiometry="1" species="Compound414"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference stoichiometry="1" species="Compound1083"/>

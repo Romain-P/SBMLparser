@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Wed Jun 14 04:52:57 2017 romain pillot
-** Last update Wed Jun 14 10:22:43 2017 romain pillot
+** Last update Wed Jun 14 10:46:05 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -48,8 +48,34 @@ bool	json_compartment(t_property **pros, char const *id)
   return (true);
 }
 
-bool	json_reaction(t_property **props, char const *id)
+static void	json_display_list(t_property *list)
 {
+  int		i;
+  t_property	**subs;
+
+  subs = childs(list);
+  i = -1;
+  while (subs[++i])
+    {
+      if (i)
+	printf(",\n");
+      json_print_property(subs[i]);
+    }
+}
+
+bool		json_reaction(t_property **props, char const *id)
+{
+  t_property	**reactions;
+  t_property	*r;
+  int		i;
+
+  reactions = childs(property_findbytype(props, LIST_REACTIONS));
+  r = property_findbyid(reactions, id);
+  printf("{\n\t\"%s\":  [\n", "listOfReactants");
+  json_display_list(property_findbytype(childs(r), LIST_REACTANTS));
+  printf("\n\t],\n\t\"%s\":  [\n", "listOfProducts");
+  json_display_list(property_findbytype(childs(r), LIST_PRODUCTS));
+  printf("\n\t]\n}\n");
   return (true);
 }
 
